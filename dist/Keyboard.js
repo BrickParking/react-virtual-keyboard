@@ -50,7 +50,7 @@ var VirtualKeyboard = function (_Component) {
       _this.setState({
         value: input
       });
-      _this.props.onChange(input);
+      _this.props.onChange(input, event);
     };
 
     _this.state = {
@@ -71,7 +71,7 @@ var VirtualKeyboard = function (_Component) {
       });
 
       this.props.options.accepted = function (event, keyboard, el) {
-        _this2.handleChange('', el.value);
+        _this2.handleChange(event, el.value);
         if (typeof _this2.props.onAccepted === 'function') {
           _this2.props.onAccepted(el.value);
         }
@@ -96,7 +96,7 @@ var VirtualKeyboard = function (_Component) {
       // Set Value to Input Element on Change if prop set
       if (this.props.options.updateOnChange === true) {
         this.props.options.change = function (event, keyboard, el) {
-          _this2.handleChange('', keyboard.preview.value);
+          _this2.handleChange(event, keyboard.preview.value);
           if (_this2.props.debug) {
             console.log('The content "' + el.value + '" was changed');
           }
@@ -109,7 +109,7 @@ var VirtualKeyboard = function (_Component) {
       // Update while typing if usePreview is false
       if (this.props.options.usePreview === false) {
         (0, _jquery2.default)(this.keyboardRef).on('keyboardChange', function (event, keyboard) {
-          _this2.handleChange(null, keyboard.preview.value);
+          _this2.handleChange(event, keyboard.preview.value);
         });
       }
     }
@@ -182,7 +182,18 @@ var VirtualKeyboard = function (_Component) {
 
       if (this.props.options.type === 'textarea') element = _react2.default.createElement('textarea', _extends({ ref: function ref(node) {
           return _this3.keyboardRef = node;
-        }, value: this.state.value, onChange: this.handleChange }, other));else element = _react2.default.createElement('input', _extends({ ref: function ref(node) {
+        }, value: this.state.value, onChange: this.handleChange }, other));else if (this.props.options.type === 'custom') element = _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement('span', _extends({ ref: function ref(node) {
+            return _this3.keyboardRef = node;
+          }, value: this.state.value, onChange: this.handleChange }, other)),
+        _react2.default.createElement(
+          'b',
+          { className: 'caret', style: { left: this.props.cursorStyle + 'vh' } },
+          'B'
+        )
+      );else element = _react2.default.createElement('input', _extends({ ref: function ref(node) {
           return _this3.keyboardRef = node;
         }, value: this.state.value, onChange: this.handleChange }, other));
 
