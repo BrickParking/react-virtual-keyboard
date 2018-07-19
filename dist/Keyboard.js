@@ -182,18 +182,7 @@ var VirtualKeyboard = function (_Component) {
 
       if (this.props.options.type === 'textarea') element = _react2.default.createElement('textarea', _extends({ ref: function ref(node) {
           return _this3.keyboardRef = node;
-        }, value: this.state.value, onChange: this.handleChange }, other));else if (this.props.options.type === 'custom') element = _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement('span', _extends({ ref: function ref(node) {
-            return _this3.keyboardRef = node;
-          }, value: this.state.value, onChange: this.handleChange }, other)),
-        _react2.default.createElement(
-          'b',
-          { className: 'caret', style: { left: this.props.cursorStyle + 'vh' } },
-          'B'
-        )
-      );else element = _react2.default.createElement('input', _extends({ ref: function ref(node) {
+        }, value: this.state.value, onChange: this.handleChange }, other));else element = _react2.default.createElement('input', _extends({ ref: function ref(node) {
           return _this3.keyboardRef = node;
         }, value: this.state.value, onChange: this.handleChange }, other));
 
